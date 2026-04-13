@@ -687,15 +687,18 @@ const isFormComplete =
 
 </div>
 
-<div className="flex flex-col items-center">
-  <h2 className="gold-text mt-4 mb-4 text-center font-serif text-3xl sm:text-4xl">
-  RSVP Form
-</h2>
+<div className="flex h-full flex-col">
+  <p className="invisible text-xs uppercase tracking-[0.35em] text-[#b28a45]">
+    RSVP
+  </p>
 
+  <h2 className="gold-text mt-3 mb-6 text-center font-serif text-3xl sm:text-4xl">
+    RSVP Form
+  </h2>
 
   <form
   onSubmit={handleSubmit}
-  className="w-full max-w-[560px] rounded-[2rem] border border-[#d7b775]/30 bg-gradient-to-b from-[#fffaf0]/92 to-white/92 p-4 sm:p-8"
+  className="mx-auto w-full max-w-[560px] flex-1 rounded-[2rem] border border-[#c89b4c]/30 bg-gradient-to-b from-[#fffaf0]/92 to-white/92 px-4 pt-[0.4rem] pb-4 sm:px-8 sm:pt-[1.15rem] sm:pb-8"
 >
 
   <div className="grid gap-4">
