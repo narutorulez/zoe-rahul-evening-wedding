@@ -21,11 +21,11 @@ function InviteMandala() {
       <div className="absolute inset-0 bg-[#fcfbf8]" />
       <div className="absolute inset-0 flex items-center justify-center">
         <img
-          src={mandalaBg}
-          alt=""
-          className="w-[110vw] max-w-[1400px] object-contain opacity-[0.50]"
-          style={{ transform: "translateY(3vh)" }}
-        />
+  src={mandalaBg}
+  alt=""
+  className="w-[155vw] sm:w-[110vw] max-w-none sm:max-w-[1400px] object-contain opacity-[0.50]"
+  style={{ transform: "translateY(3vh)" }}
+/>
       </div>
     </div>
   );
@@ -227,29 +227,30 @@ const isFormComplete =
       `}</style>
 
       <header className="sticky top-0 z-50 border-b border-[#dbc089]/20 bg-[#fcfbf8]/90 backdrop-blur-md">
-        <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-5 sm:px-8 lg:px-12">
-  <div className="majority-font text-4xl leading-none tracking-wide text-[#9d6f2c]">
-    Zoë & Rahul
+  <div className="mx-auto flex h-[64px] sm:h-[72px] max-w-6xl justify-between px-4 sm:px-8 lg:px-12">
+    <div className="majority-font flex h-full items-center text-2xl leading-none tracking-wide text-[#9d6f2c] translate-y-[3px] sm:text-3xl md:text-4xl">
+      Zoë & Rahul
+    </div>
+
+    <nav className="flex h-full items-center gap-3 text-xs text-stone-600 sm:gap-4 sm:text-sm md:gap-6 md:text-base">
+      <a href="#story" className="flex h-full items-center hover:text-[#9d6f2c]">
+        Our Day
+      </a>
+      <a href="#schedule" className="flex h-full items-center hover:text-[#9d6f2c]">
+        Schedule
+      </a>
+      <a href="#venue" className="flex h-full items-center hover:text-[#9d6f2c]">
+        Venue
+      </a>
+      <a href="#stay" className="flex h-full items-center hover:text-[#9d6f2c]">
+        Stay
+      </a>
+      <a href="#rsvp" className="flex h-full items-center hover:text-[#9d6f2c]">
+        RSVP
+      </a>
+    </nav>
   </div>
-          <nav className="hidden gap-6 text-1xl text-stone-600 md:flex">
-            <a href="#story" className="hover:text-[#9d6f2c]">
-              Our Day
-            </a>
-            <a href="#schedule" className="hover:text-[#9d6f2c]">
-              Schedule
-            </a>
-            <a href="#venue" className="hover:text-[#9d6f2c]">
-              Venue
-            </a>
-            <a href="#stay" className="hover:text-[#9d6f2c]">
-              Stay
-            </a>
-            <a href="#rsvp" className="hover:text-[#9d6f2c]">
-              RSVP
-            </a>
-          </nav>
-        </div>
-      </header>
+</header>
 
       <section className="invite-shell relative min-h-screen overflow-hidden">
         <div className="invite-overlay" />
@@ -317,11 +318,13 @@ const isFormComplete =
               timings, venue information, travel notes, accommodation guidance,
               and RSVP details.
             </p>
-            <div className="mt-4 flex items-start gap-3 text-stone-600">
-  <Gift className="mt-6 h-7 w-7 shrink-0 text-[#b28a45]" />
-  <p className="text-base leading-8 sm:text-lg">
+            <div className="mt-6 rounded-[1.5rem] border border-[#c89b4c]/30 bg-[#fffdfa]/88 p-5 text-stone-600">
+  <div className="flex items-center justify-center gap-4 text-center">
+  <Gift className="h-6 w-6 shrink-0 text-[#b28a45]" />
+  <p className="max-w-[32rem] text-sm leading-7 sm:text-base">
     Your presence at our wedding is the greatest gift of all. However, if you would like to give a gift, we would be truly grateful for a contribution towards our honeymoon.
   </p>
+</div>
 </div>
           </div>
 
@@ -356,11 +359,12 @@ const isFormComplete =
   {[
     "2:30pm - Arrivals",
     "3:30pm - Ceremony begins",
-    "4:30pm - Cake cutting",
-    "5pm - Dinner expected to be served",
-    "6pm - Evening celebrations begin",
-    "9pm - Evening food served",
-    "12pm - Carriages",
+    "4:30pm - Drinks Reception",
+    "5:15pm - Calls for Dinner",
+    "8pm - Cake Cutting & First Dance",
+    "9pm - Evening Dining",
+    "11:30pm - Last Orders",
+    "Midnight - Carriages",
   ].map((item) => (
     <div key={item} className="flex items-start gap-3">
       <span className="mt-[0.65rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
@@ -591,9 +595,9 @@ const isFormComplete =
           </div>
         </section>
 
-        <section id="rsvp" className="section-card rounded-[2rem] p-8 sm:p-10">
-  <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-    <div>
+        <section id="rsvp" className="section-card rounded-[2rem] p-4 sm:p-10">
+  <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+    <div className="min-w-0">
   <p className="text-xs uppercase tracking-[0.35em] text-[#b28a45]">
     RSVP
   </p>
@@ -601,12 +605,12 @@ const isFormComplete =
     Kindly respond
   </h2>
 
-  <div className="mt-8 rounded-[1.5rem] border border-[#d7b775]/28 bg-[#fffdfa]/88 p-5 text-stone-600">
+  <div className="mt-6 min-w-0 rounded-[1.5rem] border border-[#c89b4c]/30 bg-[#fffdfa]/88 p-4 sm:p-5 text-stone-600">
     <p className="text-center text-lg font-medium leading-7 text-stone-700">
   Please let us know whether you’ll be able to join us as we celebrate our wedding day.
 </p>
 
-<div className="gold-line mx-auto mt-2.5 h-px w-80" />
+<div className="gold-line mx-auto mt-2.5 h-px w-full max-w-[14rem] sm:max-w-[20rem]" />
 
 <div className="mt-2.5 space-y-3">
       <div className="flex items-start gap-3">
@@ -631,11 +635,11 @@ const isFormComplete =
     </div>
   </div>
 
-  <div className="mt-8 rounded-[1.5rem] border border-[#d7b775]/28 bg-[#fffdfa]/88 p-5 text-stone-600">
+  <div className="mt-6 min-w-0 rounded-[1.5rem] border border-[#c89b4c]/30 bg-[#fffdfa]/88 p-4 sm:p-5 text-stone-600">
   <p className="gold-text text-center font-serif font-semibold">Menu options</p>
 
   <div className="mt-4 grid gap-4 sm:grid-cols-2">
-    <div className="rounded-[1.25rem] border border-[#d7b775]/20 bg-white/70 p-4 text-center">
+    <div className="rounded-[1.25rem] border border-[#c89b4c]/30 bg-white/70 p-3 sm:p-4 text-center">
       <p className="font-semibold text-stone-700">Standard Menu</p>
 
       <div className="mt-4 space-y-3 leading-7 text-center">
@@ -658,7 +662,7 @@ const isFormComplete =
       </div>
     </div>
 
-    <div className="rounded-[1.25rem] border border-[#d7b775]/20 bg-white/70 p-4 text-center">
+    <div className="rounded-[1.25rem] border border-[#c89b4c]/30 bg-white/70 p-3 sm:p-4 text-center">
       <p className="font-semibold text-stone-700">Vegetarian Menu</p>
 
       <div className="mt-4 space-y-3 leading-7 text-center">
@@ -684,15 +688,15 @@ const isFormComplete =
 </div>
 
 <div className="flex flex-col items-center">
-  <h2 className="gold-text mt-6 mb-6 text-center font-serif text-3xl sm:text-4xl">
+  <h2 className="gold-text mt-4 mb-4 text-center font-serif text-3xl sm:text-4xl">
   RSVP Form
 </h2>
 
 
   <form
-    onSubmit={handleSubmit}
-    className="w-full max-w-[560px] rounded-[2rem] border border-[#d7b775]/30 bg-gradient-to-b from-[#fffaf0]/92 to-white/92 p-6 sm:p-8"
-  >
+  onSubmit={handleSubmit}
+  className="w-full max-w-[560px] rounded-[2rem] border border-[#d7b775]/30 bg-gradient-to-b from-[#fffaf0]/92 to-white/92 p-4 sm:p-8"
+>
 
   <div className="grid gap-4">
                 <div>
