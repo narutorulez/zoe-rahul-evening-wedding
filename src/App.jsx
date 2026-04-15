@@ -407,6 +407,15 @@ const isFormComplete =
           </div>
         </section>
 
+<section className="section-card rounded-[2rem] p-6 sm:p-8">
+  <p className="text-xs uppercase tracking-[0.35em] text-[#b28a45] text-center">
+    Children & plus ones
+  </p>
+  <p className="mt-4 text-center text-base leading-8 text-stone-600 sm:text-lg">
+    In order to keep the day intimate and within our venue capacity, we are only able to invite those guests whose names appear on the invitation. We kindly ask that no children or additional guests attend unless they are specifically included. Thank you for your understanding.
+  </p>
+</section>
+
         <section id="schedule" className="section-card rounded-[2rem] p-8 sm:p-10">
           <p className="text-xs uppercase tracking-[0.35em] text-[#b28a45]">
             Schedule
