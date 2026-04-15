@@ -142,11 +142,20 @@ const isFormComplete =
   );
 
   return (
-    <div className="relative isolate min-h-screen overflow-x-hidden bg-transparent text-stone-700">
+    <div className="relative isolate min-h-screen overflow-x-hidden bg-transparent pt-[46px] text-stone-700 sm:pt-[58px]">
       <InviteMandala />
 
       <style>{`
-        html { scroll-behavior: smooth; }
+        html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 57px;
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 67px;
+  }
+}
         body { background: #fcfbf8; }
 
         .gold-text {
@@ -226,29 +235,38 @@ const isFormComplete =
         }
       `}</style>
 
-      <header className="sticky top-0 z-50 border-b border-[#dbc089]/20 bg-[#fcfbf8]/90 backdrop-blur-md">
-  <div className="mx-auto flex h-[64px] sm:h-[72px] max-w-6xl justify-between px-4 sm:px-8 lg:px-12">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#c89b4c]/40 bg-[#fcfbf8]/90 backdrop-blur-md">
+  <div className="mx-auto flex h-[46px] sm:h-[58px] max-w-6xl items-center justify-between px-4 sm:px-8 lg:px-12">
     <div className="majority-font flex h-full items-center text-2xl leading-none tracking-wide text-[#9d6f2c] translate-y-[3px] sm:text-3xl md:text-4xl">
       Zoë & Rahul
     </div>
 
-    <nav className="flex h-full items-center gap-3 text-xs text-stone-600 sm:gap-4 sm:text-sm md:gap-6 md:text-base">
-      <a href="#story" className="flex h-full items-center hover:text-[#9d6f2c]">
-        Our Day
-      </a>
-      <a href="#schedule" className="flex h-full items-center hover:text-[#9d6f2c]">
-        Schedule
-      </a>
-      <a href="#venue" className="flex h-full items-center hover:text-[#9d6f2c]">
-        Venue
-      </a>
-      <a href="#stay" className="flex h-full items-center hover:text-[#9d6f2c]">
-        Stay
-      </a>
-      <a href="#rsvp" className="flex h-full items-center hover:text-[#9d6f2c]">
-        RSVP
-      </a>
-    </nav>
+    <nav className="flex h-full items-center gap-2 text-[10px] text-stone-600 sm:gap-3 sm:text-xs md:gap-4 md:text-sm">
+  <a
+    href="#story"
+    className="rounded-full border border-[#c89b4c]/70 bg-white/70 px-3 py-1.5 text-[#9d6f2c] transition hover:bg-[#fff7e8]"
+  >
+    Our Day
+  </a>
+  <a
+    href="#venue"
+    className="rounded-full border border-[#c89b4c]/70 bg-white/70 px-3 py-1.5 text-[#9d6f2c] transition hover:bg-[#fff7e8]"
+  >
+    Venue
+  </a>
+  <a
+    href="#stay"
+    className="hidden rounded-full border border-[#c89b4c]/70 bg-white/70 px-3 py-1.5 text-[#9d6f2c] transition hover:bg-[#fff7e8] sm:inline-block"
+  >
+    Stay
+  </a>
+  <a
+    href="#rsvp"
+    className="rounded-full border border-[#c89b4c]/70 bg-white/70 px-3 py-1.5 text-[#9d6f2c] transition hover:bg-[#fff7e8]"
+  >
+    RSVP
+  </a>
+</nav>
   </div>
 </header>
 
@@ -648,12 +666,11 @@ const isFormComplete =
           <p>Chicken Caesar Salad</p>
         </div>
 
-        <div>
+        <div className="min-h-[4.5rem]">
   <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Main</p>
   <p>Farmhouse Chicken</p>
+  <p className="text-sm italic text-stone-500">(Roast Dinner)</p>
 </div>
-
-<div className="h-4" />
 
 <div>
   <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Dessert</p>
@@ -671,10 +688,10 @@ const isFormComplete =
           <p>Goats Cheese Salad</p>
         </div>
 
-        <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Main</p>
-          <p>Butternut Squash &amp; Spinach Risotto</p>
-        </div>
+        <div className="min-h-[4.5rem]">
+  <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Main</p>
+  <p>Butternut Squash &amp; Spinach Risotto</p>
+</div>
 
         <div>
           <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Dessert</p>
