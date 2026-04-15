@@ -45,16 +45,27 @@ export default function ZoeRahulWeddingWebsite() {
   const [submitState, setSubmitState] = useState("idle");
   const [submitMessage, setSubmitMessage] = useState("");
 
+const needsMenuChoice = formData.attendance === "Yes, I / we will attend";
+
 const isFormComplete =
   formData.name.trim() &&
   formData.email.trim() &&
   formData.attendance.trim() &&
-  formData.foodChoice.trim();
+  (!needsMenuChoice || formData.foodChoice.trim());
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const { name, value } = e.target;
+
+  setFormData((prev) => {
+    const updated = { ...prev, [name]: value };
+
+    if (name === "attendance" && value === "No, I / we cannot attend") {
+      updated.foodChoice = "";
+    }
+
+    return updated;
+  });
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -372,7 +383,7 @@ const isFormComplete =
               <div className="flex items-start gap-4">
                 <Clock3 className="mt-1 h-5 w-5 text-[#b28a45]" />
                 <div>
-                  <div className="font-medium">Intinerary</div>
+                  <div className="font-medium">Itinerary</div>
 <div className="mt0 space-y-1.2 text-stone-600">
   {[
     "2:30pm - Arrivals",
@@ -517,7 +528,12 @@ const isFormComplete =
       </span>
     </a>
     <br />
-    Tel: 01889 270286
+<a
+  href="tel:01889270286"
+  className="inline-block hover:text-[#9d6f2c]"
+>
+  Tel: 01889 270286
+</a>
   </p>
 </div>
 
@@ -762,20 +778,24 @@ const isFormComplete =
 </div>
 
         <div>
-          <label className="mb-2 block text-sm text-stone-600">
-            Menu choice
-          </label>
-          <select
-            name="foodChoice"
-            value={formData.foodChoice}
-            onChange={handleChange}
-            className="w-full rounded-2xl border border-[#ddc28f]/45 bg-white px-4 py-3 outline-none"
-          >
-            <option value="">Please select</option>
-            <option value="Standard Menu">Standard Menu</option>
-            <option value="Vegetarian Menu">Vegetarian Menu</option>
-          </select>
-        </div>
+  <label className="mb-2 block text-sm text-stone-600">
+    Menu choice
+  </label>
+  <select
+    name="foodChoice"
+    value={formData.foodChoice}
+    onChange={handleChange}
+    disabled={!needsMenuChoice}
+    required={needsMenuChoice}
+    className="w-full rounded-2xl border border-[#ddc28f]/45 bg-white px-4 py-3 outline-none disabled:cursor-not-allowed disabled:bg-stone-100 disabled:text-stone-400"
+  >
+    <option value="">
+      {needsMenuChoice ? "Please select" : "Not required if not attending"}
+    </option>
+    <option value="Standard Menu">Standard Menu</option>
+    <option value="Vegetarian Menu">Vegetarian Menu</option>
+  </select>
+</div>
 
         <div>
           <label className="mb-2 block text-sm text-stone-600">
