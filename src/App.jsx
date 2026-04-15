@@ -8,6 +8,8 @@ import {
   Heart,
   Gift,
   UtensilsCrossed,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import mandalaBg from "./assets/mandala_mirrored_full_zoomed_out_with_final_dots.png";
 import westonHallImg from "./assets/weston-hall.jpg";
@@ -44,6 +46,7 @@ export default function ZoeRahulWeddingWebsite() {
 });
   const [submitState, setSubmitState] = useState("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+  const [openFaq, setOpenFaq] = useState(0);
 
 const needsMenuChoice = formData.attendance === "Yes, I / we will attend";
 
@@ -137,11 +140,11 @@ const isFormComplete =
         icon: Clock3,
       },
       {
-        time: "3:30pm",
-        title: "Ceremony",
-        text: "Our wedding ceremony begins at 3:30pm.",
-        icon: Heart,
-      },
+  time: "3:30pm",
+  title: "Ceremony",
+  text: "Our wedding ceremony begins at 3:30pm. We kindly ask that our ceremony be unplugged, so please keep phones and cameras away during this part of the day.",
+  icon: Heart,
+},
       {
         time: "After ceremony",
         title: "Celebrations",
@@ -151,6 +154,126 @@ const isFormComplete =
     ],
     [],
   );
+
+  const faqs = [
+  {
+    q: "Dress code",
+    a: (
+      <p>
+        To be updated shortly.
+      </p>
+    ),
+  },
+  {
+  q: "Unplugged Ceremony",
+  a: (
+    <p>
+      We kindly ask that our ceremony be unplugged. Please keep phones and cameras away during this part of the day and enjoy the moment with us. There will be plenty of time afterwards for photos and celebrations.
+    </p>
+  ),
+},
+  {
+    q: "Parking",
+    a: (
+      <>
+        <p>
+          Weston Hall offers <span className="font-medium text-stone-700">90 free, on-site parking spaces</span> for guests,
+          including those visiting for dining, events, or overnight stays.
+        </p>
+        <p className="mt-3">
+          The parking is located directly at the hotel site for convenience.
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "Accessibility",
+    a: (
+      <>
+        <p>
+          The venue is wheelchair accessible, with step-free access to the main
+          areas.
+        </p>
+        <p className="mt-3">
+          For further assistance or questions, please contact the venue directly on{" "}
+          <a
+            href="tel:01889271082"
+            className="font-medium text-[#9d6f2c] underline decoration-[#c89b4c]/60 underline-offset-4 hover:text-[#7f5821]"
+          >
+            01889 271082
+          </a>.
+        </p>
+      </>
+    ),
+  },
+  {
+  q: "Emergency Contact",
+  a: (
+    <p>
+      If you need urgent assistance on the day, please contact Laura at the venue on{" "}
+      <a
+        href="tel:01889271082"
+        className="font-medium text-[#9d6f2c] underline decoration-[#c89b4c]/60 underline-offset-4 hover:text-[#7f5821]"
+      >
+        01889 271 082
+      </a>.
+    </p>
+  ),
+},
+  {
+  q: "Taxis",
+  a: (
+    <>
+      <p>
+        If you do not have access to the Uber app, the 3 most popular local taxi
+        services are listed below.
+      </p>
+      <p className="mt-3">
+        We would strongly recommend pre-booking your return taxi in advance, as
+        availability may be limited later in the evening.
+      </p>
+      <div className="mt-3 space-y-2">
+        <div className="flex items-start gap-3">
+          <span className="mt-[0.45rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
+          <a
+            href="tel:01785500123"
+            className="font-medium text-[#9d6f2c] underline decoration-[#c89b4c]/60 underline-offset-4 hover:text-[#7f5821]"
+          >
+            Stafford Taxis - 01785 500 123
+          </a>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="mt-[0.45rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
+          <a
+            href="tel:01785255155"
+            className="font-medium text-[#9d6f2c] underline decoration-[#c89b4c]/60 underline-offset-4 hover:text-[#7f5821]"
+          >
+            Stafford Cabs - 01785 255 155
+          </a>
+        </div>
+        <div className="flex items-start gap-3">
+          <span className="mt-[0.45rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
+          <a
+            href="tel:01785225588"
+            className="font-medium text-[#9d6f2c] underline decoration-[#c89b4c]/60 underline-offset-4 hover:text-[#7f5821]"
+          >
+            Westside Stafford Taxis - 01785 225 588
+          </a>
+        </div>
+      </div>
+    </>
+  ),
+},
+  {
+    q: "RSVP Deadline",
+    a: (
+      <p>
+        Please RSVP by{" "}
+        <span className="font-medium text-stone-700">30/04/2026</span>.
+      </p>
+    ),
+  },
+];
 
   return (
     <div className="relative isolate min-h-screen overflow-x-hidden bg-transparent pt-[46px] text-stone-700 sm:pt-[58px]">
@@ -277,6 +400,12 @@ const isFormComplete =
   >
     RSVP
   </a>
+  <a
+  href="#faq"
+  className="rounded-full border border-[#c89b4c]/70 bg-white/70 px-3 py-1.5 text-[#9d6f2c] transition hover:bg-[#fff7e8]"
+>
+  FAQ
+</a>
 </nav>
   </div>
 </header>
@@ -354,6 +483,16 @@ const isFormComplete =
     Your presence at our wedding is the greatest gift of all. However, if you would like to give a gift, we would be truly grateful for a contribution towards our honeymoon.
   </p>
 </div>
+<div className="mt-4 flex justify-center">
+  <a
+    href="https://www.paypal.com/pool/9olRvJXRaa?sr=wccr"
+    target="_blank"
+    rel="noreferrer"
+    className="rounded-full border border-[#c89b4c] bg-white/80 px-5 py-2 text-sm uppercase tracking-[0.18em] text-[#9d6f2c] transition hover:bg-[#fff7e8]"
+  >
+    Contribute to our honeymoon
+  </a>
+</div>
 </div>
           </div>
 
@@ -390,6 +529,7 @@ const isFormComplete =
     "3:30pm - Ceremony begins",
     "4:30pm - Drinks Reception",
     "5:15pm - Calls for Dinner",
+    "5:30pm - Dinner is served",
     "8pm - Cake Cutting & First Dance",
     "9pm - Evening Dining",
     "11:30pm - Last Orders",
@@ -650,7 +790,10 @@ const isFormComplete =
 
   <div className="mt-6 min-w-0 rounded-[1.5rem] border border-[#c89b4c]/30 bg-[#fffdfa]/88 p-4 sm:p-5 text-stone-600">
     <p className="text-center text-lg font-medium leading-7 text-stone-700">
-  Please let us know whether you’ll be able to join us as we celebrate our wedding day.
+  Please let us know whether you’ll be able to join us as we celebrate our wedding day by{" "}
+  <span className="font-semibold underline decoration-[#c89b4c]/70 underline-offset-4">
+  30/04/2026
+</span>
 </p>
 
 <div className="gold-line mx-auto mt-2.5 h-px w-full max-w-[14rem] sm:max-w-[20rem]" />
@@ -672,7 +815,7 @@ const isFormComplete =
       <div className="flex items-start gap-3">
         <span className="mt-[0.6rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
         <p className="leading-7">
-          Please use the message box to share any dietary requirements or anything else we should know.
+          Please use the message box to share any dietary requirements, allergies, or a note for us.
         </p>
       </div>
     </div>
@@ -845,17 +988,62 @@ const isFormComplete =
   </div>
 </div>
 </section>
+
+<section id="faq" className="section-card rounded-[2rem] p-6 sm:p-8">
+  <p className="text-xs uppercase tracking-[0.35em] text-[#b28a45] text-center">
+    FAQ
+  </p>
+  <h2 className="gold-text mt-3 text-center font-serif text-3xl sm:text-4xl">
+    Frequently asked questions
+  </h2>
+
+  <div className="mt-6 space-y-4">
+    {faqs.map((item, index) => {
+      const isOpen = openFaq === index;
+
+      return (
+        <div
+          key={item.q}
+          className="overflow-hidden rounded-[1.5rem] border border-[#c89b4c]/30 bg-[#fffdfa]/88"
+        >
+          <button
+            type="button"
+            className="flex w-full items-center justify-between px-5 py-4 text-left"
+            onClick={() => setOpenFaq(isOpen ? null : index)}
+          >
+            <span className="font-semibold text-stone-700">{item.q}</span>
+            {isOpen ? (
+              <ChevronUp className="h-5 w-5 text-[#b28a45]" />
+            ) : (
+              <ChevronDown className="h-5 w-5 text-[#b28a45]" />
+            )}
+          </button>
+
+          {isOpen && (
+            <div className="px-5 pb-5 leading-7 text-stone-600">
+              {item.a}
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+</section>
+
       </main>
 
       <footer className="content-layer border-t border-[#dbc089]/20 px-6 py-10 text-center sm:px-10 lg:px-16">
-        <div className="mx-auto max-w-4xl">
-          <div className="majority-font text-2xl text-[#9d6f2c]">Zoë & Rahul</div>
-          <p className="mt-3 text-stone-600">
-            8th August 2026 · Weston Hall · Stafford
-          </p>
-          <div className="gold-line mx-auto mt-5 h-px w-24" />
-        </div>
-      </footer>
+  <div className="mx-auto max-w-4xl">
+    <div className="majority-font text-2xl text-[#9d6f2c]">Zoë & Rahul</div>
+    <p className="mt-3 text-stone-600">
+      8th August 2026 · Weston Hall · Stafford
+    </p>
+    <p className="mt-4 text-sm leading-7 text-stone-500 sm:text-base">
+      If any further details or updates are needed, they will be added here in due course.
+    </p>
+    <div className="gold-line mx-auto mt-5 h-px w-24" />
+  </div>
+</footer>
     </div>
   );
 }
