@@ -241,7 +241,8 @@ const isFormComplete =
   q: "Emergency Contact",
   a: (
     <p>
-      If you need urgent assistance on the day, please contact Laura at the venue on{" "}
+      If you need urgent assistance on the day, please contact{" "}
+      <span className="font-semibold text-stone-700">Laura</span> on{" "}
       <a
         href="tel:01889271082"
         className="font-medium text-[#9d6f2c] underline decoration-[#c89b4c]/60 underline-offset-4 hover:text-[#7f5821]"
