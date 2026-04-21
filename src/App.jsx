@@ -300,7 +300,7 @@ const isFormComplete =
     a: (
       <p>
         Please RSVP by{" "}
-        <span className="font-medium text-stone-700">30/04/2026</span>.
+        <span className="font-medium text-stone-700">15/05/2026</span>.
       </p>
     ),
   },
@@ -823,7 +823,7 @@ const isFormComplete =
     <p className="text-center text-lg font-medium leading-7 text-stone-700">
   Please let us know whether you’ll be able to join us as we celebrate our wedding day by{" "}
   <span className="font-semibold underline decoration-[#c89b4c]/70 underline-offset-4">
-  30/04/2026
+  15/05/2026
 </span>
 </p>
 
@@ -846,7 +846,7 @@ const isFormComplete =
       <div className="flex items-start gap-3">
         <span className="mt-[0.6rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
         <p className="leading-7">
-          Please use the message box to share any dietary requirements, allergies, or a note for us, for example, Vegetarian Starter & Standard Main combination.
+          Please use the message box to share any dietary requirements, allergies, or a note for us, e.g. Vegetarian Starter & Standard Main combination.
         </p>
       </div>
     </div>
