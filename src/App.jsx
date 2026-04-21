@@ -46,7 +46,7 @@ export default function ZoeRahulWeddingWebsite() {
 });
   const [submitState, setSubmitState] = useState("idle");
   const [submitMessage, setSubmitMessage] = useState("");
-  const [openFaq, setOpenFaq] = useState(0);
+  const [openFaq, setOpenFaq] = useState(null);
 
 const needsMenuChoice = formData.attendance === "Yes, I / we will attend";
 
@@ -157,18 +157,49 @@ const isFormComplete =
 
   const faqs = [
   {
-    q: "Dress code",
-    a: (
+  q: "Dress code",
+  a: (
+    <>
       <p>
-        To be updated shortly.
+        Our celebration will follow an{" "}
+        <span
+  className="font-medium text-stone-700"
+  style={{
+    backgroundImage: "linear-gradient(90deg, #b91c1c 0%, #b91c1c 35%, #d4af37 65%, #d4af37 100%)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "100% 2px",
+    backgroundPosition: "0 100%",
+    paddingBottom: "2px",
+  }}
+>
+  East meets West theme,
+</span>{" "}
+         and we would love for guests to reflect this in their attire. Whether you choose traditional Eastern dress, classic Western formalwear, or a fusion of both, we simply ask that your outfit feels occasion-worthy, comfortable, and something you can dance in.
       </p>
-    ),
-  },
+      <p className="mt-3">
+        Our wedding colours include{" "}
+        <span
+  className="font-medium text-stone-700"
+  style={{
+    backgroundImage: "linear-gradient(90deg, #b91c1c 0%, #b91c1c 31%, #d4af37 59%, #d4af37 100%)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "100% 2px",
+    backgroundPosition: "0 100%",
+    paddingBottom: "2px",
+  }}
+>
+  red and gold
+</span>
+        , and we warmly encourage vibrant colours as part of the celebration.
+      </p>
+    </>
+  ),
+},
   {
   q: "Unplugged Ceremony",
   a: (
     <p>
-      We kindly ask that our ceremony be unplugged. Please keep phones and cameras away during this part of the day and enjoy the moment with us. There will be plenty of time afterwards for photos and celebrations.
+      We kindly ask that our ceremony be unplugged at 3:30pm. Please keep phones and cameras away during this part of the day and enjoy the moment with us. There will be plenty of time afterwards for photos and celebrations.
     </p>
   ),
 },
@@ -484,14 +515,14 @@ const isFormComplete =
   </p>
 </div>
 <div className="mt-4 flex justify-center">
-  <a
-    href="https://www.paypal.com/pool/9olRvJXRaa?sr=wccr"
-    target="_blank"
-    rel="noreferrer"
-    className="rounded-full border border-[#c89b4c] bg-white/80 px-5 py-2 text-sm uppercase tracking-[0.18em] text-[#9d6f2c] transition hover:bg-[#fff7e8]"
-  >
-    Contribute to our honeymoon
-  </a>
+ <a
+  href="https://www.paypal.com/pool/9olRvJXRaa?sr=wccr"
+  target="_blank"
+  rel="noreferrer"
+  className="rounded-full border border-[#c89b4c] bg-white/80 px-5 py-2 text-center text-sm uppercase tracking-[0.18em] text-[#9d6f2c] transition hover:bg-[#fff7e8]"
+>
+  Contribute to our honeymoon
+</a>
 </div>
 </div>
           </div>
@@ -815,7 +846,7 @@ const isFormComplete =
       <div className="flex items-start gap-3">
         <span className="mt-[0.6rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
         <p className="leading-7">
-          Please use the message box to share any dietary requirements, allergies, or a note for us.
+          Please use the message box to share any dietary requirements, allergies, or a note for us, for example, Vegetarian Starter & Standard Main combination.
         </p>
       </div>
     </div>
