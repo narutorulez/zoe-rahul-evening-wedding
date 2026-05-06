@@ -1,13 +1,10 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   MapPin,
   CalendarDays,
   Clock3,
   BedDouble,
-  Mail,
-  Heart,
   Gift,
-  UtensilsCrossed,
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
@@ -41,33 +38,20 @@ export default function ZoeRahulWeddingWebsite() {
   name: "",
   email: "",
   attendance: "",
-  foodChoice: "",
   message: "",
 });
   const [submitState, setSubmitState] = useState("idle");
   const [submitMessage, setSubmitMessage] = useState("");
   const [openFaq, setOpenFaq] = useState(null);
 
-const needsMenuChoice = formData.attendance === "Yes, I / we will attend";
-
 const isFormComplete =
   formData.name.trim() &&
   formData.email.trim() &&
-  formData.attendance.trim() &&
-  (!needsMenuChoice || formData.foodChoice.trim());
+  formData.attendance.trim();
 
   const handleChange = (e) => {
   const { name, value } = e.target;
-
-  setFormData((prev) => {
-    const updated = { ...prev, [name]: value };
-
-    if (name === "attendance" && value === "No, I / we cannot attend") {
-      updated.foodChoice = "";
-    }
-
-    return updated;
-  });
+  setFormData((prev) => ({ ...prev, [name]: value }));
 };
 
   const handleSubmit = async (e) => {
@@ -85,13 +69,14 @@ const isFormComplete =
     setSubmitMessage("");
 
     const payload = {
-      SubmittedAt: new Date().toISOString(),
+  SubmittedAt: new Date().toISOString(),
   Name: formData.name,
   Email: formData.email,
   Attendance: formData.attendance,
-  FoodChoice: formData.foodChoice,
+  FoodChoice: "N/A",
+  GuestType: "E",
   Message: formData.message,
-    };
+};
 
     try {
       const body = new URLSearchParams();
@@ -119,7 +104,6 @@ const isFormComplete =
   name: "",
   email: "",
   attendance: "",
-  foodChoice: "",
   message: "",
 });
     } catch (error) {
@@ -130,30 +114,6 @@ const isFormComplete =
   );
 }
   };
-
-  const events = useMemo(
-    () => [
-      {
-        time: "2:30pm",
-        title: "Guest arrivals",
-        text: "Please arrive from 2:30pm so everyone is comfortably seated before the ceremony begins.",
-        icon: Clock3,
-      },
-      {
-  time: "3:30pm",
-  title: "Ceremony",
-  text: "Our wedding ceremony begins at 3:30pm. We kindly ask that our ceremony be unplugged, so please keep phones and cameras away during this part of the day.",
-  icon: Heart,
-},
-      {
-        time: "After ceremony",
-        title: "Celebrations",
-        text: "Drinks, dinner, and dancing to follow at Weston Hall.",
-        icon: UtensilsCrossed,
-      },
-    ],
-    [],
-  );
 
   const faqs = [
   {
@@ -193,14 +153,6 @@ const isFormComplete =
         , and we warmly encourage vibrant colours as part of the celebration.
       </p>
     </>
-  ),
-},
-  {
-  q: "Unplugged Ceremony",
-  a: (
-    <p>
-      We kindly ask that our ceremony be unplugged at 3:30pm. Please keep phones and cameras away during this part of the day and enjoy the moment with us. There will be plenty of time afterwards for photos and celebrations.
-    </p>
   ),
 },
   {
@@ -412,7 +364,7 @@ const isFormComplete =
     href="#story"
     className="rounded-full border border-[#c89b4c]/70 bg-white/70 px-3 py-1.5 text-[#9d6f2c] transition hover:bg-[#fff7e8]"
   >
-    Our Day
+    Details
   </a>
   <a
     href="#venue"
@@ -453,7 +405,7 @@ const isFormComplete =
   Zoë & Rahul
 </h1>
             <p className="formal-copy max-w-3xl">
-              invite you to join them as they celebrate their wedding day.
+              invite you to join them for their evening wedding celebration.
             </p>
 
             <div className="mt-12 flex items-center gap-5 sm:gap-7">
@@ -465,7 +417,7 @@ const isFormComplete =
             </div>
 
             <p className="small-formal mt-10 max-w-3xl">
-              Arrivals from 2:30pm&nbsp;&nbsp;|&nbsp;&nbsp;Ceremony at 3:30pm
+              Evening reception from 7:30pm
             </p>
 
             <div className="mt-10">
@@ -499,14 +451,10 @@ const isFormComplete =
               We are so happy you are here
             </h2>
             <p className="mt-6 text-base leading-8 text-stone-600 sm:text-lg">
-              We are so excited to celebrate this special day with the people we
-              love most. Thank you for being part of our story, and for joining
-              us as we begin this next chapter together.
+              We are so excited to celebrate with you at our evening reception. Thank you for being part of this special moment with us as we continue the celebrations into the night.
             </p>
             <p className="mt-4 text-base leading-8 text-stone-600 sm:text-lg">
-              This website includes the key details for the day, including
-              timings, venue information, travel notes, accommodation guidance,
-              and RSVP details.
+              This website includes the key details for the evening, including venue information, travel notes, accommodation guidance, and RSVP details.
             </p>
             <div className="mt-6 rounded-[1.5rem] border border-[#c89b4c]/30 bg-[#fffdfa]/88 p-5 text-stone-600">
   <div className="flex items-center justify-center gap-4 text-center">
@@ -557,16 +505,12 @@ const isFormComplete =
                   <div className="font-medium">Itinerary</div>
 <div className="mt0 space-y-1.2 text-stone-600">
   {[
-    "2:30pm - Arrivals",
-    "3:30pm - Ceremony begins",
-    "4:30pm - Drinks Reception",
-    "5:15pm - Calls for Dinner",
-    "5:30pm - Dinner is served",
-    "8pm - Cake Cutting & First Dance",
-    "9pm - Evening Dining",
-    "11:30pm - Last Orders",
-    "Midnight - Carriages",
-  ].map((item) => (
+  "7:30pm - Arrivals",
+  "8:00pm - Cake cutting & first dance",
+  "9:00pm - Evening food",
+  "11:30pm - Last orders",
+  "Midnight - Carriages",
+].map((item) => (
     <div key={item} className="flex items-start gap-3">
       <span className="mt-[0.65rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
       <span>{item}</span>
@@ -588,35 +532,6 @@ const isFormComplete =
   </p>
 </section>
 
-        <section id="schedule" className="section-card rounded-[2rem] p-8 sm:p-10">
-          <p className="text-xs uppercase tracking-[0.35em] text-[#b28a45]">
-            Schedule
-          </p>
-          <h2 className="gold-text mt-3 font-serif text-3xl sm:text-4xl">
-            The day
-          </h2>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {events.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.title}
-                  className="rounded-[1.75rem] border border-[#d7b775]/30 bg-[#fffdfa]/88 p-6"
-                >
-                  <Icon className="h-6 w-6 text-[#b28a45]" />
-                  <div className="mt-4 text-sm uppercase tracking-[0.25em] text-[#b28a45]">
-                    {item.time}
-                  </div>
-                  <h3 className="mt-2 font-serif text-2xl text-stone-700">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 leading-7 text-stone-600">{item.text}</p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
         <section id="venue" className="grid gap-8 lg:grid-cols-[1fr_1fr]">
           <div className="section-card rounded-[2rem] p-8 sm:p-10">
             <p className="text-xs uppercase tracking-[0.35em] text-[#b28a45]">
@@ -631,10 +546,7 @@ const isFormComplete =
               Stafford ST18 0HS
             </p>
             <p className="mt-5 leading-8 text-stone-600">
-              Set in the Staffordshire countryside, Weston Hall will host our
-              ceremony and celebrations. More venue-specific guidance can be
-              added here, including arrival instructions and where different
-              parts of the day will take place.
+              Set in the Staffordshire countryside, Weston Hall will host our ceremony and celebrations. With ample on-site parking, step-free access, and elegant surroundings, it provides a beautiful setting for a night of celebration. We can’t wait to celebrate with you there!
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
@@ -646,8 +558,8 @@ const isFormComplete =
             </div>
           </div>
 
-          <div className="section-card rounded-[2rem] p-8 sm:p-10">
-  <div className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#c89b4c]">
+          <div className="section-card flex items-center justify-center rounded-[2rem] p-8 sm:p-10">
+  <div className="w-full overflow-hidden rounded-[1.75rem] border border-[#c89b4c]">
     <img
       src={westonHallImg}
       alt="Weston Hall wedding venue"
@@ -711,9 +623,11 @@ const isFormComplete =
     <br />
 <a
   href="tel:01889270286"
-  className="inline-block hover:text-[#9d6f2c]"
+  className="mt-3 inline-block hover:text-[#9d6f2c]"
 >
-  Tel: 01889 270286
+  <span className="underline decoration-[#c89b4c]/60 underline-offset-4">
+    Tel: 01889 270286
+  </span>
 </a>
   </p>
 </div>
@@ -839,84 +753,35 @@ const isFormComplete =
       <div className="flex items-start gap-3">
         <span className="mt-[0.6rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
         <p className="leading-7">
-          Guests may choose between a <span className="font-semibold text-stone-700">Standard</span> or{" "}
-          <span className="font-semibold text-stone-700">Vegetarian</span> menu.
+          Please use the message box to share any dietary requirements, allergies, or a note for us.
         </p>
-      </div>
+        </div>
 
-      <div className="flex items-start gap-3">
+<div className="flex items-start gap-3">
         <span className="mt-[0.6rem] block h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89b4c]" />
         <p className="leading-7">
-          Please use the message box to share any dietary requirements, allergies, or a note for us, e.g. Vegetarian Starter & Standard Main combination.
+          Evening food will be served from around 8:30pm and will include a standard and vegetarian option. Details to follow.
         </p>
       </div>
-    </div>
-  </div>
 
-  <div className="mt-6 min-w-0 rounded-[1.5rem] border border-[#c89b4c]/30 bg-[#fffdfa]/88 p-4 sm:p-5 text-stone-600">
-  <p className="gold-text text-center font-serif font-semibold">Menu options</p>
-
-  <div className="mt-4 grid gap-4 sm:grid-cols-2">
-    <div className="rounded-[1.25rem] border border-[#c89b4c]/30 bg-white/70 p-3 sm:p-4 text-center">
-      <p className="font-semibold text-stone-700">Standard Menu</p>
-
-      <div className="mt-4 space-y-3 leading-7 text-center">
-        <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Starter</p>
-          <p>Chicken Caesar Salad</p>
-        </div>
-
-        <div className="min-h-[4.5rem]">
-  <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Main</p>
-  <p>Farmhouse Chicken</p>
-  <p className="text-sm italic text-stone-500">(Roast Dinner)</p>
-</div>
-
-<div>
-  <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Dessert</p>
-  <p>Eton Mess</p>
-</div>
       </div>
     </div>
-
-    <div className="rounded-[1.25rem] border border-[#c89b4c]/30 bg-white/70 p-3 sm:p-4 text-center">
-      <p className="font-semibold text-stone-700">Vegetarian Menu</p>
-
-      <div className="mt-4 space-y-3 leading-7 text-center">
-        <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Starter</p>
-          <p>Goats Cheese Salad</p>
-        </div>
-
-        <div className="min-h-[4.5rem]">
-  <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Main</p>
-  <p>Butternut Squash &amp; Spinach Risotto</p>
 </div>
 
-        <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-[#b28a45]">Dessert</p>
-          <p>Eton Mess</p>
-        </div>
-      </div>
-    </div>
-    </div>
-</div>
-
-</div>
-
-<div className="flex h-full flex-col">
+<div className="flex h-full flex-col items-center lg:items-end">
   <p className="invisible text-xs uppercase tracking-[0.35em] text-[#b28a45]">
     RSVP
   </p>
 
+ <div className="w-full max-w-[560px]">
   <h2 className="gold-text mt-3 mb-6 text-center font-serif text-3xl sm:text-4xl">
     RSVP Form
   </h2>
 
   <form
-  onSubmit={handleSubmit}
-  className="mx-auto w-full max-w-[560px] flex-1 rounded-[2rem] border border-[#c89b4c]/30 bg-gradient-to-b from-[#fffaf0]/92 to-white/92 px-4 pt-[0.4rem] pb-4 sm:px-8 sm:pt-[1.15rem] sm:pb-8"
->
+    onSubmit={handleSubmit}
+    className="w-full rounded-[2rem] border border-[#c89b4c]/30 bg-gradient-to-b from-[#fffaf0]/92 to-white/92 px-4 pt-[0.4rem] pb-4 sm:px-8 sm:pt-[1.15rem] sm:pb-8"
+  >
 
   <div className="grid gap-4">
                 <div>
@@ -962,26 +827,6 @@ const isFormComplete =
 </div>
 
         <div>
-  <label className="mb-2 block text-sm text-stone-600">
-    Menu choice
-  </label>
-  <select
-    name="foodChoice"
-    value={formData.foodChoice}
-    onChange={handleChange}
-    disabled={!needsMenuChoice}
-    required={needsMenuChoice}
-    className="w-full rounded-2xl border border-[#ddc28f]/45 bg-white px-4 py-3 outline-none disabled:cursor-not-allowed disabled:bg-stone-100 disabled:text-stone-400"
-  >
-    <option value="">
-      {needsMenuChoice ? "Please select" : "Not required if not attending"}
-    </option>
-    <option value="Standard Menu">Standard Menu</option>
-    <option value="Vegetarian Menu">Vegetarian Menu</option>
-  </select>
-</div>
-
-        <div>
           <label className="mb-2 block text-sm text-stone-600">
             Message
           </label>
@@ -1014,10 +859,11 @@ const isFormComplete =
   className="mt-2 rounded-full border border-[#c89b4c] bg-white px-6 py-3 text-sm uppercase tracking-[0.24em] text-[#9d6f2c] hover:bg-[#fff7e8] disabled:cursor-not-allowed disabled:opacity-60"
 >
   {submitState === "submitting" ? "Sending..." : "Send RSVP"}
-</button>
+        </button>
       </div>
     </form>
   </div>
+</div>
 </div>
 </section>
 
